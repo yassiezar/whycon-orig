@@ -1,7 +1,7 @@
-#include "CCircleDetect.h"
+#include <imageproc/CCircleDetect.h>
 
 /*
- * File name: CCircleDetect.h
+ * File name: imageproc/CCircleDetect.h
  * Date:      2014
  * Author:   Tom Krajnik, Matias Nitsche
  * Description: implements computationally efficient and precist circular pattern detection. Algorithm is described in Chapter 3 of the article [1]. 

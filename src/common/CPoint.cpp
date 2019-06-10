@@ -1,4 +1,4 @@
-#include "CPoint.h"
+#include <common/CPoint.h>
 
 CPoint::CPoint()
 {

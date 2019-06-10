@@ -1,4 +1,4 @@
-#include "CTimer.h"
+#include "../../include/common/CTimer.h"
 
 CTimer::CTimer(int timeout)
 {

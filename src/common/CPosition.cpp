@@ -1,4 +1,4 @@
-#include "CPosition.h"
+#include <common/CPosition.h>
 #include <math.h>
 
 CPosition::CPosition():CPoint()
