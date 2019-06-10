@@ -10,6 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_subdirectory(src/common)
 add_subdirectory(src/imageproc)
 
+#add_library(whycon SHARED imageproc)
 add_library(whycon SHARED $<TARGET_OBJECTS:common> $<TARGET_OBJECTS:imageproc>)
 
 target_compile_options(whycon PRIVATE -Werror -Wall -Wextra -ggdb)

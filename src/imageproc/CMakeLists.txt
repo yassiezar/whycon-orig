@@ -2,4 +2,4 @@ add_library(imageproc OBJECT CNecklace.cpp sysmat.cpp CNecklace.cpp CTransformat
 
 target_compile_options(imageproc PRIVATE -fPIC)
 
-target_include_directories(imageproc PUBLIC ${PROJECT_SOURCE_DIR}/include/)
+target_include_directories(imageproc PRIVATE ${PROJECT_SOURCE_DIR}/include/)

@@ -67,7 +67,7 @@ CCircleDetect::CCircleDetect(int wi,int he,int idi)
 	areasRatio = (1.0-areaRatioInner_Outer)/areaRatioInner_Outer;
 
 	//timers for benchmarking
-	tima = timb = timc =timd = sizer = sizerAll = 0;
+	// tima = timb = timc =timd = sizer = sizerAll = 0;
 //	loadCircleID("../etc/ID.txt");
 }
 
@@ -97,8 +97,8 @@ bool CCircleDetect::changeThreshold()
 
 bool CCircleDetect::examineSegment(CRawImage *image,SSegment *segmen,int ii,float areaRatio)
 {
-	timer.reset();
-	timer.start();
+	//timer.reset();
+	//timer.start();
 	int vx,vy;
 	queueOldStart = queueStart;
 	int position = 0;
@@ -191,7 +191,7 @@ bool CCircleDetect::examineSegment(CRawImage *image,SSegment *segmen,int ii,floa
 			result = true;	
 		}
 	}
-	timb +=timer.getTime();
+	// timb +=timer.getTime();
 	return result;
 }
 
@@ -418,9 +418,9 @@ SSegment CCircleDetect::findSegment(CRawImage* image, SSegment init)
 {
 	numSegments = 0;
 
-	timer.reset();
-	timer.start();
-	tima += timer.getTime();
+	//timer.reset();
+	//timer.start();
+	//tima += timer.getTime();
 	int pos = 0;
 	int ii = 0;
 	int start = 0;

@@ -12,7 +12,7 @@
 
 #include <imageproc/CNecklace.h>
 #include <common/CRawImage.h>
-#include <common/CTimer.h>
+// #include <common/CTimer.h>
 #include <common/cmath.h>
 
 #include <math.h>
@@ -118,7 +118,7 @@ private:
     int width,height,len,siz;
     int expand[4];
     unsigned char *ptr;
-    CTimer timer;
+    // CTimer timer;
     int tima,timb,timc,timd,sizer,sizerAll;
     float diameterRatio;
     bool ownBuffer;
