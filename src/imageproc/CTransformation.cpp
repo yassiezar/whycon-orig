@@ -24,7 +24,7 @@ CTransformation::CTransformation(int widthi,int heighti,float diam,bool fullUnba
 	fullUnbarrel = fullUnbarreli;
 	width = widthi;
 	height = heighti;
-	char dummy[1000];
+/*	char dummy[1000];
 	FILE* file = fopen("../etc/Calib_Results.m","r");
 	trackedObjectDiameter = diam;
 	while (feof(file)== false){
@@ -70,11 +70,10 @@ CTransformation::CTransformation(int widthi,int heighti,float diam,bool fullUnba
 	printf("\n");
 	for (int i = 0;i<2;i++) printf("%05f,",cc[i]);
 	printf("\n");
-	unbarrelInitialized = false;
 
 	if (fullUnbarrel){
 		unbarrelInitialized = true;
-		float ix,iy; 
+		float ix,iy;
 		float gx,gy,ux,uy;
 		xArray = (float*)malloc(width*height*sizeof(float));
 		yArray = (float*)malloc(width*height*sizeof(float));
@@ -87,9 +86,9 @@ CTransformation::CTransformation(int widthi,int heighti,float diam,bool fullUnba
 				xArray[y*width+x] = barrelX(x,y);
 				yArray[y*width+x] = barrelY(x,y);
 				if (xArray[y*width+x] < 0 || xArray[y*width+x] > (width-1) || yArray[y*width+x] < 0 || yArray[y*width+x] > (height-1)){
-					xArray[y*width+x] = 0; 
-					yArray[y*width+x] = 0; 
-				}	
+					xArray[y*width+x] = 0;
+					yArray[y*width+x] = 0;
+				}
 				ux = trunc(xArray[y*width+x]);
 				uy = trunc(yArray[y*width+x]);
 				gx = xArray[y*width+x]-ux;
@@ -97,13 +96,15 @@ CTransformation::CTransformation(int widthi,int heighti,float diam,bool fullUnba
 				ix = (int)ux;
 				iy = (int)uy;
 				pArray[y*width+x] = width*iy+ix;
-				gArrayX[y*width+x] = gx; 
-				gArrayY[y*width+x] = gy; 
+				gArrayX[y*width+x] = gx;
+				gArrayY[y*width+x] = gy;
 			}
 		}
 	}
-	loadCalibration("../etc/default.cal");
+	loadCalibration("../etc/default.cal");*/
+    unbarrelInitialized = false;
 }
+
 
 CTransformation::~CTransformation()
 {
@@ -114,6 +115,15 @@ CTransformation::~CTransformation()
 		free(gArrayY);
 		free(pArray);
 	}
+}
+
+void CTransformation::setCameraParams(float *_fc, float *_cc, float *_kc, float *_fc_err, float *_kc_err)
+{
+    memcpy(fc, _fc, sizeof(float));
+	memcpy(cc, _cc, sizeof(float));
+	memcpy(kc, _kc, sizeof(float));
+	memcpy(fcerr, _fc_err, sizeof(float));
+	memcpy(kcerr, _kc_err, sizeof(float));
 }
 
 float CTransformation::barrelX(float x,float y)

@@ -80,6 +80,8 @@ public:
     float distance(STrackedObject o1,STrackedObject o2);
     STrackedObject transformInv(STrackedObject o[]);
 
+    void setCameraParams(float *_fc, float *_cc, float *_kc, float *_fc_err, float *_kc_err);
+
 private:
     STrackedObject  normalize(STrackedObject o);
     float establishError(STrackedObject o);
