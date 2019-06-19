@@ -24,9 +24,9 @@ CTransformation::CTransformation(int widthi,int heighti,float diam,bool fullUnba
 	fullUnbarrel = fullUnbarreli;
 	width = widthi;
 	height = heighti;
+	trackedObjectDiameter = diam;
 /*	char dummy[1000];
 	FILE* file = fopen("../etc/Calib_Results.m","r");
-	trackedObjectDiameter = diam;
 	while (feof(file)== false){
 		int err = fscanf(file,"%s",dummy);
 		if (strcmp(dummy,"fc") == 0){
@@ -119,11 +119,11 @@ CTransformation::~CTransformation()
 
 void CTransformation::setCameraParams(float *_fc, float *_cc, float *_kc, float *_fc_err, float *_kc_err)
 {
-    memcpy(fc, _fc, sizeof(float));
-	memcpy(cc, _cc, sizeof(float));
-	memcpy(kc, _kc, sizeof(float));
-	memcpy(fcerr, _fc_err, sizeof(float));
-	memcpy(kcerr, _kc_err, sizeof(float));
+    memcpy(fc, _fc, 2*sizeof(float));
+	memcpy(cc, _cc, 2*sizeof(float));
+	memcpy(kc, _kc, 6*sizeof(float));
+	memcpy(fcerr, _fc_err, 2*sizeof(float));
+	memcpy(kcerr, _kc_err, 6*sizeof(float));
 }
 
 float CTransformation::barrelX(float x,float y)

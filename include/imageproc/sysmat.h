@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
+#include <cmath>
 
 #define REAL double
 #define ABS  fabs
@@ -15,7 +15,9 @@
 
 #define NMAX 11
 #define MMAX 6
-              
+
+#define MATSIZE 3
+
 typedef REAL MAT[NMAX][NMAX];
 typedef REAL MAT1[NMAX][MMAX];                         
     
@@ -23,7 +25,7 @@ void MATINV(int, int, MAT, MAT1, REAL*);
 void MATMUL(MAT,MAT,MAT,int);   
 void MATMUL1(MAT,MAT1,MAT1,int,int);  
 
-void eigen_decomposition(double A[3][3], double V[3][3], double d[3]);
+void eigen_decomposition(double A[][MATSIZE], double V[][MATSIZE], double d[]);
 
 #endif
 //End of file sysmat.h

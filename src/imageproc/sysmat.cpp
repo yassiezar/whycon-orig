@@ -222,15 +222,11 @@ void MATINV(int N,int M,MAT AA,MAT1 BB,REAL *DET)   {
       return;                                                                    
   }         
   
-#include <math.h>
-
 #ifdef MAX
 #undef MAX
 #endif
 
 #define MAX(a, b) ((a)>(b)?(a):(b))
-
-#define MATSIZE 3
 
 static double hypot2(double x, double y) {
   return sqrt(x*x+y*y);
@@ -238,7 +234,7 @@ static double hypot2(double x, double y) {
 
 // Symmetric Householder reduction to tridiagonal form.
 
-static void tred2(double V[MATSIZE][MATSIZE], double d[MATSIZE], double e[MATSIZE]) {
+static void tred2(double V[][MATSIZE], double d[], double e[]) {
 
 //  This is derived from the Algol procedures tred2 by
 //  Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
@@ -355,7 +351,7 @@ static void tred2(double V[MATSIZE][MATSIZE], double d[MATSIZE], double e[MATSIZ
 
 // Symmetric tridiagonal QL algorithm.
 
-static void tql2(double V[MATSIZE][MATSIZE], double d[MATSIZE], double e[MATSIZE]) {
+static void tql2(double V[][MATSIZE], double d[], double e[]) {
 
 //  This is derived from the Algol procedures tql2, by
 //  Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
@@ -473,7 +469,7 @@ static void tql2(double V[MATSIZE][MATSIZE], double d[MATSIZE], double e[MATSIZE
   }
 }
 
-void eigen_decomposition(double A[MATSIZE][MATSIZE], double V[MATSIZE][MATSIZE], double d[MATSIZE]) {
+void eigen_decomposition(double A[][MATSIZE], double V[][MATSIZE], double d[]) {
   double e[MATSIZE];
   for (int i = 0; i < MATSIZE; i++) {
     for (int j = 0; j < MATSIZE; j++) {
