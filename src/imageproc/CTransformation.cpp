@@ -71,37 +71,37 @@ CTransformation::CTransformation(int widthi,int heighti,float diam,bool fullUnba
 	for (int i = 0;i<2;i++) printf("%05f,",cc[i]);
 	printf("\n");
 
-	if (fullUnbarrel){
-		unbarrelInitialized = true;
-		float ix,iy;
-		float gx,gy,ux,uy;
-		xArray = (float*)malloc(width*height*sizeof(float));
-		yArray = (float*)malloc(width*height*sizeof(float));
-		gArrayX = (float*)malloc(width*height*sizeof(float));
-		gArrayY = (float*)malloc(width*height*sizeof(float));
-		pArray = (int*)malloc(width*height*sizeof(int)*4);
-
-		for (int x = 0;x<width;x++){
-			for (int y = 0;y<height;y++){
-				xArray[y*width+x] = barrelX(x,y);
-				yArray[y*width+x] = barrelY(x,y);
-				if (xArray[y*width+x] < 0 || xArray[y*width+x] > (width-1) || yArray[y*width+x] < 0 || yArray[y*width+x] > (height-1)){
-					xArray[y*width+x] = 0;
-					yArray[y*width+x] = 0;
-				}
-				ux = trunc(xArray[y*width+x]);
-				uy = trunc(yArray[y*width+x]);
-				gx = xArray[y*width+x]-ux;
-				gy = yArray[y*width+x]-uy;
-				ix = (int)ux;
-				iy = (int)uy;
-				pArray[y*width+x] = width*iy+ix;
-				gArrayX[y*width+x] = gx;
-				gArrayY[y*width+x] = gy;
-			}
-		}
-	}
 	loadCalibration("../etc/default.cal");*/
+    if (fullUnbarrel){
+        unbarrelInitialized = true;
+        float ix,iy;
+        float gx,gy,ux,uy;
+        xArray = (float*)malloc(width*height*sizeof(float));
+        yArray = (float*)malloc(width*height*sizeof(float));
+        gArrayX = (float*)malloc(width*height*sizeof(float));
+        gArrayY = (float*)malloc(width*height*sizeof(float));
+        pArray = (int*)malloc(width*height*sizeof(int)*4);
+
+        for (int x = 0;x<width;x++){
+            for (int y = 0;y<height;y++){
+                xArray[y*width+x] = barrelX(x,y);
+                yArray[y*width+x] = barrelY(x,y);
+                if (xArray[y*width+x] < 0 || xArray[y*width+x] > (width-1) || yArray[y*width+x] < 0 || yArray[y*width+x] > (height-1)){
+                    xArray[y*width+x] = 0;
+                    yArray[y*width+x] = 0;
+                }
+                ux = trunc(xArray[y*width+x]);
+                uy = trunc(yArray[y*width+x]);
+                gx = xArray[y*width+x]-ux;
+                gy = yArray[y*width+x]-uy;
+                ix = (int)ux;
+                iy = (int)uy;
+                pArray[y*width+x] = width*iy+ix;
+                gArrayX[y*width+x] = gx;
+                gArrayY[y*width+x] = gy;
+            }
+        }
+    }
     unbarrelInitialized = false;
 }
 
