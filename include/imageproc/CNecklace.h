@@ -14,21 +14,26 @@ typedef struct
 
 class CNecklace{
     public:
-        CNecklace(int bits,int minimalHamming);
-        ~CNecklace();
-        SNecklace get(int sequence);
-        int printAll(int a[]);
+    CNecklace(int bits,int minimalHamming);
+    ~CNecklace();
+    SNecklace get(int sequence);
+	SNecklace get(int sequence, float conf);
+    int printAll(int a[]);
 	int verifyHamming(int a[],int bits,int len);
+	int getEstimatedID();
+	float observationEstimation(float confidence);
 
 
     private:
 	bool debug;
-        int length;
-        int idLength; 
-        SNecklace *idArray;
-        SNecklace unknown;
-        int* finalList;
+    SNecklace *idArray;
+    SNecklace unknown;
+	int length;
+	int idLength;
+	int maxID;
+    int* finalList;
 	int getHamming(int a, int b);
 	int getMinimalHamming(int a,int len);
+	float* probArray;
 };
 #endif

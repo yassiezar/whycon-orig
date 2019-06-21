@@ -25,53 +25,6 @@ CTransformation::CTransformation(int widthi,int heighti,float diam,bool fullUnba
 	width = widthi;
 	height = heighti;
 	trackedObjectDiameter = diam;
-/*	char dummy[1000];
-	FILE* file = fopen("../etc/Calib_Results.m","r");
-	while (feof(file)== false){
-		int err = fscanf(file,"%s",dummy);
-		if (strcmp(dummy,"fc") == 0){
-			for (int j = 0;j<10;j++){
-				if (fscanf(file,"%s\n",dummy)!=1) fprintf(stderr,"Transformation: error reading camera calibration file, %i.\n",err);
-				if (j==2) fc[0] = atof(dummy);
-				if (j==4) fc[1] = atof(dummy);
-			}
-		}
-		if (strcmp(dummy,"cc") == 0){
-			for (int j = 0;j<10;j++){
-				if(fscanf(file,"%s\n",dummy)!=1) fprintf(stderr,"Transformation: error reading camera calibration file.\n");
-				if (j==2) cc[0] = atof(dummy);
-				if (j==4) cc[1] = atof(dummy);
-			}
-		}
-		if (strcmp(dummy,"kc") == 0){
-			for (int j = 0;j<12;j++){
-				if(fscanf(file,"%s\n",dummy)!=1) fprintf(stderr,"Transformation: error reading camera calibration file.\n");
-				if (j>1 && j%2 == 0) kc[j/2] = atof(dummy);
-			}
-		}
-		if (strcmp(dummy,"kc_error") == 0){
-			for (int j = 0;j<12;j++){
-				if(fscanf(file,"%s\n",dummy)!=1) fprintf(stderr,"Transformation: error reading camera calibration file.\n");
-				if (j>1 && j%2 == 0) kcerr[j/2] = atof(dummy);
-			}
-		}
-		if (strcmp(dummy,"fc_error") == 0){
-			for (int j = 0;j<10;j++){
-				if (fscanf(file,"%s\n",dummy)!=1) fprintf(stderr,"Transformation: error reading camera calibration file, %i.\n",err);
-				if (j==2) fcerr[0] = atof(dummy);
-				if (j==4) fcerr[1] = atof(dummy);
-			}
-		}
-	}
-	kc[0] = 1.0;
-	for (int i = 0;i<6;i++) printf("%05f,",kc[i]);
-	printf("\n");
-	for (int i = 0;i<2;i++) printf("%05f,",fc[i]);
-	printf("\n");
-	for (int i = 0;i<2;i++) printf("%05f,",cc[i]);
-	printf("\n");
-
-	loadCalibration("../etc/default.cal");*/
     if (fullUnbarrel){
         unbarrelInitialized = true;
         float ix,iy;
