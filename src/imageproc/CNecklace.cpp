@@ -7,6 +7,7 @@ CNecklace::CNecklace(int bits,int minimalHamming = 1)
 	idArray = (SNecklace*)malloc(sizeof(SNecklace)*idLength);
 
 	int currentID = 0;
+	maxID = 0;
 	int tempID,bit,rotations;
 	int minHam = 1000;
 	int hamindex = 1000;
@@ -78,7 +79,7 @@ CNecklace::CNecklace(int bits,int minimalHamming = 1)
 
 	for (int i = 0; i < idLength; i++) if(maxID < idArray[i].id) maxID = idArray[i].id;
 	probArray = (float*)malloc(sizeof(float)*maxID);
-	for (int id = 0; id < maxID; id++) probArray[id] = 1./(float)maxID;
+	for (int id = 0; id < maxID; id++) probArray[id] = 1.f/(float)maxID;
 }
 
 CNecklace::~CNecklace()
