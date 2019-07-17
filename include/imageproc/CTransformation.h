@@ -16,6 +16,15 @@
 #include <unistd.h>
 #include "CCircleDetect.h"
 
+#include <semaphore.h>
+#include <boost/math/special_functions.hpp>
+
+#include <gsl/gsl_math.h>
+#include <gsl/gsl_complex_math.h>
+#include <gsl/gsl_permutation.h>
+#include <gsl/gsl_eigen.h>
+#include <gsl/gsl_linalg.h>
+
 /*which transform to use*/
 typedef enum{
     TRANSFORM_NONE,			//camera-centric
@@ -34,6 +43,7 @@ typedef struct{
     float error;			//measured error
     float esterror;			//predicted error
     int ID;				//ID - not used here
+    bool valid;
 }STrackedObject;
 
 typedef struct{				//rotation/translation model of the 3D transformation
@@ -63,7 +73,7 @@ public:
     void transformXYerr(float *ix,float *iy);
 
     /*calculate marker 3D or 2D coordinates in user-defined coordinate system from the segment description provided by the CCircleDetector class, see 4.1-4.4 of [1] */
-    STrackedObject transform(SSegment segment,bool unbarrel);
+    STrackedObject transform(SSegment segment);
     /*calculate the pattern 3D position from its ellipse characteristic equation, see 4.3 of [1]*/
     STrackedObject eigen(double data[]);
     /*establish the user-defined coordinate system from four calibration patterns - see 4.4 of [1]*/
@@ -108,6 +118,7 @@ private:
     float fc[2];
     float cc[2];
     float error2D;
+    sem_t trfparamsem;
     STrackedObject c2D[4];
 };
 

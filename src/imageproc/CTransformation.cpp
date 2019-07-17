@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <imageproc/CTransformation.h>
 #include <imageproc/sysmat.h>
+#include <imageproc/CCircleDetect.h>
 
 /*
  * File name: CTransformation.h
@@ -189,9 +190,9 @@ void CTransformation::unbarrel(unsigned char *dst,unsigned char *src)
 		for (int p = 0;p<width*(height-1);p++){
 			gx = gArrayX[p];
 			gy = gArrayY[p];
-			dst[3*p] = src[3*pArray[p]]*(1-gx)*(1-gy)+src[3*pArray[p]+3]*gx*(1-gy)+src[3*pArray[p]+width*3]*(1-gx)*gy+src[3*pArray[p]+(width+1)*3]*gx*gy; 
-			dst[3*p+1] = src[3*pArray[p]+1]*(1-gx)*(1-gy)+src[3*pArray[p]+3+1]*gx*(1-gy)+src[3*pArray[p]+width*3+1]*(1-gx)*gy+src[3*pArray[p]+(width+1)*3+1]*gx*gy; 
-			dst[3*p+2] = src[3*pArray[p]+2]*(1-gx)*(1-gy)+src[3*pArray[p]+3+2]*gx*(1-gy)+src[3*pArray[p]+width*3+2]*(1-gx)*gy+src[3*pArray[p]+(width+1)*3+2]*gx*gy; 
+			dst[3*p] = src[3*pArray[p]]*(1-gx)*(1-gy)+src[3*pArray[p]+3]*gx*(1-gy)+src[3*pArray[p]+width*3]*(1-gx)*gy+src[3*pArray[p]+(width+1)*3]*gx*gy;
+			dst[3*p+1] = src[3*pArray[p]+1]*(1-gx)*(1-gy)+src[3*pArray[p]+3+1]*gx*(1-gy)+src[3*pArray[p]+width*3+1]*(1-gx)*gy+src[3*pArray[p]+(width+1)*3+1]*gx*gy;
+			dst[3*p+2] = src[3*pArray[p]+2]*(1-gx)*(1-gy)+src[3*pArray[p]+3+2]*gx*(1-gy)+src[3*pArray[p]+width*3+2]*(1-gx)*gy+src[3*pArray[p]+(width+1)*3+2]*gx*gy;
 		}
 	}else{
 		fprintf(stdout,"Image unbarrel was not enabled\n");
@@ -201,21 +202,21 @@ void CTransformation::unbarrel(unsigned char *dst,unsigned char *src)
 STrackedObject CTransformation::transform4D(STrackedObject o)
 {
 	STrackedObject r;
-	r.x = trf4D[0]*o.x+trf4D[1]*o.y+trf4D[2]*o.z+trf4D[3]; 
-	r.y = trf4D[4]*o.x+trf4D[5]*o.y+trf4D[6]*o.z+trf4D[7]; 
-	r.z = trf4D[8]*o.x+trf4D[9]*o.y+trf4D[10]*o.z+trf4D[11]; 
-	float s = trf4D[12]*o.x+trf4D[13]*o.y+trf4D[14]*o.z+trf4D[15]; 
+	r.x = trf4D[0]*o.x+trf4D[1]*o.y+trf4D[2]*o.z+trf4D[3];
+	r.y = trf4D[4]*o.x+trf4D[5]*o.y+trf4D[6]*o.z+trf4D[7];
+	r.z = trf4D[8]*o.x+trf4D[9]*o.y+trf4D[10]*o.z+trf4D[11];
+	float s = trf4D[12]*o.x+trf4D[13]*o.y+trf4D[14]*o.z+trf4D[15];
 	r.x = r.x/s;
 	r.y = r.y/s;
 	r.z = r.z/s;
 	r.error = establishError(r);
-	return r; 	
+	return r;
 }
 
 STrackedObject CTransformation::transform2D(STrackedObject o)
 {
 	STrackedObject r;
-	r.x = hom[0]*o.x+hom[1]*o.y+hom[2]; 
+	r.x = hom[0]*o.x+hom[1]*o.y+hom[2];
 	r.y = hom[3]*o.x+hom[4]*o.y+hom[5];
 	r.z = hom[6]*o.x+hom[7]*o.y+hom[8];
 	r.x = r.x/r.z;
@@ -223,7 +224,7 @@ STrackedObject CTransformation::transform2D(STrackedObject o)
 	r.z = 0;
 	//printf("%.3f %.3f\n",r.x,r.y);
 	r.error = establishError(r);
-	return r; 	
+	return r;
 }
 
 float CTransformation::distance(STrackedObject o1,STrackedObject o2)
@@ -278,10 +279,10 @@ STrackedObject CTransformation::transform3D(STrackedObject o,int num)
 		//printf("UUU: %f %f %f %f %f\n",result[k].x,result[k].y,result[k].z,str,establishError(result[k]));
 	}
 	final.x=final.x/strAll;
-	final.y=final.y/strAll;	
-	final.z=final.z/strAll;	
+	final.y=final.y/strAll;
+	final.z=final.z/strAll;
 
- 	
+
 	float x,y,z;
 	final.esterror = 0;
 	for (int k = 0;k<num;k++){
@@ -294,7 +295,7 @@ STrackedObject CTransformation::transform3D(STrackedObject o,int num)
 	float yerr0 = -o.y/o.x;
 	transformXYerr(&xerr0,&yerr0);
 	final.esterror= sqrt(xerr0*xerr0+yerr0*yerr0)*30+fcerr[0]/fc[0]*30;
-	
+
 	//final.esterror = final.esterror/num;
 	final.error = establishError(final);
 	return final;
@@ -429,7 +430,7 @@ int CTransformation::calibrate2D(STrackedObject *inp,float dimX,float dimY,float
 		vec[2*i][0]=-r[i].x;
 		vec[2*i+1][0]=-r[i].y;
 	}
-	MATINV(8,1,est,vec,&det); 
+	MATINV(8,1,est,vec,&det);
 	for (int i = 0;i<8;i++)  hom[i] = vec[i][0];
 	hom[8] = 1;
 	transformType = TRANSFORM_2D;
@@ -491,7 +492,7 @@ S3DTransform CTransformation::calibrate3D(STrackedObject o0,STrackedObject o1,ST
 		m23D[1][i]=v[i].y;
 		m23D[2][i]=v[i].z;
 	}
-	MATINV(3,3,m23D,vec,&det); 
+	MATINV(3,3,m23D,vec,&det);
 	for (int i = 0;i<3;i++){
 		result.simlar[0][i] = m23D[0][i]*gridDimX;
 		result.simlar[1][i] = m23D[1][i]*gridDimY;
@@ -512,13 +513,13 @@ int CTransformation::calibrate3D(STrackedObject *o,float gridDimX,float gridDimY
 	transformType = TRANSFORM_3D;
 	return 0;
 }
-		
-//implemented according to   
+
+//implemented according to
 STrackedObject CTransformation::eigen(double data[])
 {
 	STrackedObject result;
 	result.error = 0;
-	double d[3];
+/*	double d[3];
 	double V[3][3];
 	double dat[3][3];
 	for (int i = 0;i<9;i++)dat[i/3][i%3] = data[i];
@@ -527,7 +528,21 @@ STrackedObject CTransformation::eigen(double data[])
 	//eigenvalues
 	float L1 = d[1]; 
 	float L2 = d[2];
-	float L3 = d[0];
+	float L3 = d[0];*/
+
+	gsl_matrix_view m = gsl_matrix_view_array(data, 3, 3);
+	gsl_vector *eval = gsl_vector_alloc(3);
+	gsl_matrix *evec = gsl_matrix_alloc(3, 3);
+
+	gsl_eigen_symmv_workspace *w = gsl_eigen_symmv_alloc(3);
+	gsl_eigen_symmv(&m.matrix, eval, evec, w);
+	gsl_eigen_symmv_free(w);
+	gsl_eigen_symmv_sort(eval, evec, GSL_EIGEN_SORT_ABS_ASC);
+
+	float L1 = gsl_vector_get(eval, 1);
+	float L2 = gsl_vector_get(eval, 2);
+	float L3 = gsl_vector_get(eval, 0);
+
 	//eigenvectors
 	int V2=2;
 	int V3=0;
@@ -535,13 +550,13 @@ STrackedObject CTransformation::eigen(double data[])
 	//detected pattern position
 	float z = trackedObjectDiameter/sqrt(-L2*L3)/2.0;
 	float c0 =  sqrt((L2-L1)/(L2-L3));
-	float c0x = c0*V[2][V2];
-	float c0y = c0*V[1][V2];
-	float c0z = c0*V[2][V2];
+	float c0x = c0*gsl_matrix_get(evec, 0, V2);
+	float c0y = c0*gsl_matrix_get(evec, 1, V2);
+	float c0z = c0*gsl_matrix_get(evec, 2, V2);
 	float c1 =  sqrt((L1-L3)/(L2-L3));
-	float c1x = c1*V[0][V3];
-	float c1y = c1*V[1][V3];
-	float c1z = c1*V[2][V3];
+	float c1x = c1*gsl_matrix_get(evec, 0, V3);
+	float c1y = c1*gsl_matrix_get(evec, 1, V3);
+	float c1z = c1*gsl_matrix_get(evec, 2, V3);
 
 	float z0 = -L3*c0x+L2*c1x;
 	float z1 = -L3*c0y+L2*c1y;
@@ -575,29 +590,35 @@ STrackedObject CTransformation::eigen(double data[])
 	//result.pitch = -n0*z;	
 	//result.yaw = -n1*z;
 
+    gsl_vector_free(eval);
+	gsl_matrix_free(evec);
 
 	return result;
 }
 
-STrackedObject CTransformation::transform(SSegment segment,bool unbarreli)
+STrackedObject CTransformation::transform(SSegment segment)
 {
 	float x,y,x1,x2,y1,y2,major,minor,v0,v1;
 	STrackedObject result;
-	fullUnbarrel = unbarreli;
-	
+
 	/* transformation to the canonical camera coordinates, see 4.1 of [1]*/
 	x = segment.x;
 	y = segment.y;
+
+	sem_wait(&trfparamsem);
 	transformXY(&x,&y);
+
 	//major axis
 	//vertices in image coords
 	x1 = segment.x+segment.v0*segment.m0*2;
 	x2 = segment.x-segment.v0*segment.m0*2;
 	y1 = segment.y+segment.v1*segment.m0*2;
 	y2 = segment.y-segment.v1*segment.m0*2;
+
 	//vertices in canonical camera coords 
 	transformXY(&x1,&y1);
 	transformXY(&x2,&y2);
+
 	//semiaxes length 
 	major = sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2))/2.0;
 	v0 = (x2-x1)/major/2.0;
@@ -610,10 +631,13 @@ STrackedObject CTransformation::transform(SSegment segment,bool unbarreli)
 	x2 = segment.x-segment.v1*segment.m1*2;
 	y1 = segment.y-segment.v0*segment.m1*2;
 	y2 = segment.y+segment.v0*segment.m1*2;
+
 	//vertices in canonical camera coords 
 	transformXY(&x1,&y1);
 	transformXY(&x2,&y2);
-	//minor axis length 
+	sem_post(&trfparamsem);
+
+	//minor axis length
 	minor = sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2))/2.0;
 	//printf("BBB: %f %f\n",sqrt((x-x1)*(x-x1)+(y-y1)*(y-y1))-sqrt((x-x2)*(x-x2)+(y-y2)*(y-y2)),minor);
 
@@ -629,7 +653,7 @@ STrackedObject CTransformation::transform(SSegment segment,bool unbarreli)
 
 	/*transformation to camera-centric or user-defined coordinate frames*/
 	//3D->2D homography, see 4.4.2 of [1]
-	if (transformType == TRANSFORM_2D)			
+	if (transformType == TRANSFORM_2D)
 	{
 		//for debug only
 		result = eigen(data);
@@ -643,7 +667,7 @@ STrackedObject CTransformation::transform(SSegment segment,bool unbarreli)
 		float xerr = x;
 		float yerr = y;
 		transformXYerr(&xerr,&yerr);
-		result.esterror = fabs(sqrt(xerr*xerr+yerr*yerr))*30; 
+		result.esterror = fabs(sqrt(xerr*xerr+yerr*yerr))*30;
 		result.yaw = atan2(segment.v0,segment.v1);
 		result.yaw = segment.angle;
 	}
@@ -673,8 +697,10 @@ STrackedObject CTransformation::transform(SSegment segment,bool unbarreli)
 		float d = sqrt(result.x*result.x+result.y*result.y+result.z*result.z);
 		result.d = d;
 	}
+    result.bwratio = segment.bwRatio;
 	result.ID = segment.ID;
 	result.yaw = segment.angle;
+	result.valid = boost::math::isnormal(result.x) && boost::math::isnormal(result.y) && boost::math::isnormal(result.z) && boost::math::isnormal(result.bwratio);
 	/*result.pitch = acos(fmin(minor/major,1.0))/M_PI*180.0; //TODO
 	result.roll = segment.horizontal; //TODO*/
 	return result;
