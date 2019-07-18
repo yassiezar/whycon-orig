@@ -8,11 +8,11 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 include_directories(${PROJECT_SOURCE_DIR}/include/)
 
-add_library(gsl SHARED IMPORTED )
-set_target_properties(gsl PROPERTIES IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/libs/libgsl.so )
+add_library(gsl STATIC IMPORTED )
+set_target_properties(gsl PROPERTIES IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/libs/libgsl.a )
 
-add_library(gslcblas SHARED IMPORTED )
-set_target_properties(gslcblas PROPERTIES IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/libs/libgslcblas.so)
+add_library(gslcblas STATIC IMPORTED )
+set_target_properties(gslcblas PROPERTIES IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/libs/libgslcblas.a)
 
 #set( Boost_INCLUDE_DIR ${BOOST_ROOT}/include )
 #set(Boost_DEBUG 1)

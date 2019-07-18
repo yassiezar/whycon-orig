@@ -605,7 +605,7 @@ STrackedObject CTransformation::transform(SSegment segment)
 	x = segment.x;
 	y = segment.y;
 
-	sem_wait(&trfparamsem);
+//	sem_wait(&trfparamsem);
 	transformXY(&x,&y);
 
 	//major axis
@@ -635,7 +635,7 @@ STrackedObject CTransformation::transform(SSegment segment)
 	//vertices in canonical camera coords 
 	transformXY(&x1,&y1);
 	transformXY(&x2,&y2);
-	sem_post(&trfparamsem);
+//	sem_post(&trfparamsem);
 
 	//minor axis length
 	minor = sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2))/2.0;
