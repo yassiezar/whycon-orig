@@ -1,5 +1,8 @@
-##WhyCon 
-###A precise, efficient and low-cost localization system 
+The latest version of the system is in the <b>whycon-ros-full</b> branch. 
+
+## WhyCon
+
+### A precise, efficient and low-cost localization system 
 
 _WhyCon_ is a version of a vision-based localization system that can be used with low-cost web cameras, and achieves millimiter precision with very high performance.
 The system is capable of efficient real-time detection and precise position estimation of several circular markers in a video stream. 
@@ -13,31 +16,31 @@ _WhyCon-orig_ is WhyCon's original, minimalistic version that was supposed to be
 |[![WhyCon applications](https://raw.githubusercontent.com/wiki/gestom/WhyCon/pics/whycon.png)](https://www.youtube.com/watch?v=KgKrN8_EmUA"AAAA")|-precise docking to a charging station (EU project STRANDS),<br/> -fitness evaluation for self-evolving robots (EU proj. SYMBRION),<br/>-relative localization of UAV-UGV formations (CZ-USA project COLOS),<br/>-energy source localization in (EU proj REPLICATOR),<br/>-robotic swarm localization (EU proj HAZCEPT).|
 
 The _WhyCon_ system was developed as a joint project between the University of Buenos Aires, Czech Technical University and University of Lincoln, UK.
-The main contributors were [Matias Nitsche](https://scholar.google.co.uk/citations?user=Z0hQoRUAAAAJ&hl=en&oi=ao), [Tom Krajnik](http://scholar.google.co.uk/citations?user=Qv3nqgsAAAAJ&hl=en&oi=ao) and [Jan Faigl](https://scholar.google.co.uk/citations?user=-finD_sAAAAJ&hl=en). Each of these contributors maintains a slightly different version of WhyCon.
+The main contributors were [Matias Nitsche](https://scholar.google.co.uk/citations?user=Z0hQoRUAAAAJ&hl=en&oi=ao), [Tom Krajnik](http://scholar.google.co.uk/citations?user=Qv3nqgsAAAAJ&hl=en&oi=ao), [Peter Lightbody](https://scholar.google.com/citations?user=tBUM-8oAAAAJ&hl=en)  and [Jan Faigl](https://scholar.google.co.uk/citations?user=-finD_sAAAAJ&hl=en). Each of these contributors maintains a slightly different version of WhyCon.
 
 | WhyCon version  | Application | Main features | Maintainer|
 | --------------- | ----------- | ------ | ----- |
-| [WhyCon-orig](../../) | general | 2D, 3D, lightweight, autocalibration | [Tom Krajnik](http://scholar.google.co.uk/citations?user=Qv3nqgsAAAAJ&hl=en&oi=ao)|
-| [WhyCon-ROS](https://github.com/lrse/whycon) | general | 2D, 3D, ROS + lightweight | [Matias Nitsche](https://scholar.google.co.uk/citations?user=Z0hQoRUAAAAJ&hl=en&oi=ao) |
+| [WhyCon-orig](../../) | general | 2D, 3D, ROS, lightweight, autocalibration | [Tom Krajnik](http://scholar.google.co.uk/citations?user=Qv3nqgsAAAAJ&hl=en&oi=ao)|
+| [WhyCon-ROS](https://github.com/lrse/whycon) | general | 2D, ROS | [Matias Nitsche](https://scholar.google.co.uk/citations?user=Z0hQoRUAAAAJ&hl=en&oi=ao) |
 | [SwarmCon](https://github.com/gestom/CosPhi/tree/master/Localization) | μ-swarms | 2D, individual IDs, autocalibration | [Tom Krajnik](http://scholar.google.co.uk/citations?user=Qv3nqgsAAAAJ&hl=en&oi=ao) |
 | [Caspa-WhyCon](http://robotics.fel.cvut.cz/faigl/caspa/) | UAVs | embedded, open HW-SW solution | [Jan Faigl](https://scholar.google.co.uk/citations?user=-finD_sAAAAJ&hl=en) |
-| [Social-card](https://github.com/strands-project/strands_social/tree/hydro-devel/social_card_reader) | HRI | orientation translated to commands  | [Tom Krajnik](http://scholar.google.co.uk/citations?user=Qv3nqgsAAAAJ&hl=en&oi=ao) |
+| [Social-card](https://github.com/strands-project/strands_social/tree/hydro-devel/social_card_reader) | HRI | ROS, allows to command a robot | [Tom Krajnik](http://scholar.google.co.uk/citations?user=Qv3nqgsAAAAJ&hl=en&oi=ao) |
 
+#### Where is it described ?
 
-####Where is it described ?
-
-<i>WhyCon</i> was first presented on International Conference on Advanced Robotics 2013 [[1](#references)], later in the Journal of Intelligent and Robotics Systems [[2](#references)] and finally at the Workshop on Open Source Aerial Robotics during the International Conference on Intelligent Robotic Systems, 2015 [[3](#references)]. Its early version was also presented at the International Conference of Robotics and Automation, 2013 [[4](#references)].
+<i>WhyCon</i> was first presented on International Conference on Advanced Robotics 2013 [[2](#references)], later in the Journal of Intelligent and Robotics Systems [[1](#references)] and finally at the Workshop on Open Source Aerial Robotics during the International Conference on Intelligent Robotic Systems, 2015 [[3](#references)]. Its early version was also presented at the International Conference of Robotics and Automation, 2013 [[4](#references)]. An extension of the system, which used a necklace code to add ID's to the tags, achieved a best paper award at the SAC 2017 conference [[5](#references)].
 If you decide to use this software for your research, please cite <i>WhyCon</i> using the one of the references provided in this [bibtex](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/WhyCon.bib) file.
 
 -----
 
-###Setting up WhyCon 
+### Setting up WhyCon 
 
-####Quick setup for initial testing
+#### Quick setup for initial testing
 
-1. Install the required <a href="#libraries">libraries</a>.
-1. Check the available resolutions, framerates and formats of your USB camera by running <b>luvcview -L</b>. 
-1. Run <b>luvcview</b> and adjust your camera settings (exposure, brightness etc).
+1. Install the required <a href="#dependencies">libraries</a>.: <i>sudo apt-get install libsdl1.2-dev libsdl-ttf2.0-dev libncurses5-dev guvcview</i>.
+
+1. Check the available resolutions, framerates and formats of your USB camera by running <b>guvcview -L</b>. 
+1. Run <b>guvcview</b> and adjust your camera settings (exposure, brightness etc).
 1. Download the software from GitHub and go to the <b>src</b> directory.
 1. Adjust the camera resolution in the <b>main/whycon.cpp</b>.
 1. Compile the software - just type <b>make</b>.
@@ -47,7 +50,7 @@ If you decide to use this software for your research, please cite <i>WhyCon</i> 
 1. At this point, you can also change camera brightness, exposure, contrast by pressing <i>(SHIFT) b, e, c</i> respectively. These settings are stored in <i>etc/camera.cfg</i> and reloaded on restart.
 1. Open your browser to view localhost:6666. You should see the circle position.
 
-####Setting up the coordinate system
+#### Setting up the coordinate system
 
 1. Calibrate your camera using the MATLAB (or Octave) calibration toolbox and put the <b>Calib_Results.m</b> in the <b>etc</b> directory.
 1. If you have resized the markers (their default size is 122mm), then adjust their diameter in the <b>main/whycon.cpp</b> file.
@@ -60,7 +63,7 @@ If you decide to use this software for your research, please cite <i>WhyCon</i> 
 1. Pressing 1 should show you the patterns' positions in camera-centric coordinates (x-axis equals to camera optical axis), pressing 2 and 3 will display marker coordinates in user-defined 2D or 3D coordinate systems.
 1. Pressing <b>+</b>,<b>-</b> changes the number of localized patterns.
 
-####To postprocess the stored videos
+#### To postprocess the stored videos
 
 1. To create a log of the robot positions, simply create an <b>output</b> folder at the directory where you run the <b>whycon</b>.
 2. If your camera supports the MJPEG format, then the system will create a video in the <b>output</b> folder as well.
@@ -70,7 +73,7 @@ If you decide to use this software for your research, please cite <i>WhyCon</i> 
 6. Running the system with a <b>nogui</b> argument e.g. <b>./whycon /dev/video0 1 nogui</b> causes text-only output - this can speed-up postprocessing.
 7. Logs and videos might be large - to prevent saving logs and videos, run the system with <b>nolog</b> or <b>novideo</b> argument.
 
-####Some additional remarks
+#### Some additional remarks
 
 2. At this point, you can start experimenting with the syste by adding whatever features you might think useful.
 3. We have tried to comment the code so an experienced programmer should be able to alter the system accordingly. However, if you have any questions regarding the code, feel free to contact [Tom Krajnik](http://scholar.google.co.uk/citations?user=Qv3nqgsAAAAJ&hl=en&oi=ao) or [Matias Nitsche](https://scholar.google.co.uk/citations?user=Z0hQoRUAAAAJ&hl=en&oi=ao)
@@ -79,23 +82,25 @@ If you decide to use this software for your research, please cite <i>WhyCon</i> 
 </ol>
 
 <hr>
-###Dependencies
+
+### Dependencies
 
 All the following libraries are probably in your packages.
 
 1. <b>libsdl1.2-dev</b> for graphical user interface.
 2. <b>libsdl-ttf2.0-dev</b> to print stuff in the GUI.
 3. <b>libncurses5-dev</b> to print stuff on the terminal.
-4. <b>luvcview</b> to set-up the camera.
+4. <b>guvcview</b> to set-up the camera.
 
-###References
-1. T. Krajník, M. Nitsche et al.: <b>[External localization system for mobile robotics.](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2013_icar_whycon.pdf)</b> International Conference on Advanced Robotics (ICAR), 2013. [[bibtex](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2013_icar_whycon.bib)].
-2. T. Krajník, M. Nitsche et al.: <b>[A Practical Multirobot Localization System.](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2015_JINT_whycon.pdf)</b> Journal of Intelligent and Robotic Systems (JINT), 2014. [[bibtex](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2015_JINT_whycon.bib)].
+### References
+1. T. Krajník, M. Nitsche et al.: <b>[A Practical Multirobot Localization System.](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2015_JINT_whycon.pdf)</b> Journal of Intelligent and Robotic Systems (JINT), 2014. [[bibtex](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2015_JINT_whycon.bib)].
+2. T. Krajník, M. Nitsche et al.: <b>[External localization system for mobile robotics.](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2013_icar_whycon.pdf)</b> International Conference on Advanced Robotics (ICAR), 2013. [[bibtex](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2013_icar_whycon.bib)].
 3. M. Nitsche, T. Krajník et al.: <b>[WhyCon: An Efficent, Marker-based Localization System.](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2015_irososar_whycon.pdf)</b> IROS Workshop on Open Source Aerial Robotics, 2015. [[bibtex](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2015_irososar_whycon.bib)].
 4. J. Faigl, T. Krajník et al.: <b>[Low-cost embedded system for relative localization in robotic swarms.](http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6630694)</b> International Conference on Robotics and Automation (ICRA), 2013. [[bibtex](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2013_icra_whycon.bib)].
+5. P. Lightbody, T. Krajník et al.: <b>[A versatile high-performance visual fiducial marker detection system with scalable identity encoding.](http://eprints.lincoln.ac.uk/25828/1/4d0bd9e8a3b3b5ad6ca2d56c1438fbbc.pdf)</b>Symposium on Applied Computing, 2017.[[bibtex](http://raw.githubusercontent.com/wiki/gestom/CosPhi/papers/2017_sac_whycon.bib)].
+### Acknowledgements
 
-###Acknowledgements
-
-The development of this work was supported by EU within its Seventh Framework Programme project ICT-600623 ``STRANDS''.
+The development of this work is currently supported by the Czech Science Foundation project 17-27006Y _STRoLL_.
+In the past, the work was supported by EU within its Seventh Framework Programme project ICT-600623 _STRANDS_.
 The Czech Republic and Argentina have given support through projects 7AMB12AR022, ARC/11/11 and 13-18316P.
 We sincerely acknowledge [Jean Pierre Moreau](http://jean-pierre.moreau.pagesperso-orange.fr/infos.html) for his excellent libraries for numerical analysis that we use in our project. 
