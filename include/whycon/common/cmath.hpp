@@ -1,9 +1,9 @@
 /*
- * File name: cmath.h
+ * File name: cmath.hpp
  * Date:      2005/10/17 19:16
  * Author:    
  */
-#include <math.h>
+#include <cmath>
 
 #ifndef __CMATH_H__
 #define __CMATH_H__

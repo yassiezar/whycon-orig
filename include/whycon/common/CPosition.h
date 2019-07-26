@@ -3,7 +3,7 @@
  * Date:      2005/10/25 12:49
  * Author:    
  */
-#include "CPoint.h"
+#include "CPoint.hpp"
 
 #ifndef __CPOSITION_H__
 #define __CPOSITION_H__
