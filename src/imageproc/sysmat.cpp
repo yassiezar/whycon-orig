@@ -1,4 +1,4 @@
-#include "sysmat.h"
+#include "../../include/whycon/imageproc/sysmat.h"
                    
 
 /******************************************                                     

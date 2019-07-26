@@ -1,4 +1,4 @@
-#include "CTimer.h"
+#include "../../include/whycon/common/CTimer.h"
 
 CTimer::CTimer(int timeout)
 {

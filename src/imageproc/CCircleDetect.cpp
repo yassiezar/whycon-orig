@@ -1,4 +1,4 @@
-#include "CCircleDetect.h"
+#include "../../include/whycon/imageproc/CCircleDetect.h"
 
 /*
  * File name: CCircleDetect.h

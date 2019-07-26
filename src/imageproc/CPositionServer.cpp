@@ -1,4 +1,4 @@
-#include "CPositionServer.h"
+#include "../../include/whycon/imageproc/CPositionServer.h"
 
 #define NETWORK_BLOCK MSG_WAITALL
 

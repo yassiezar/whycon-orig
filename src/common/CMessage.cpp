@@ -1,4 +1,4 @@
-#include "CMessage.h"
+#include "../../include/whycon/common/CMessage.h"
 
 const char* StrMessage[] ={
 	"None",

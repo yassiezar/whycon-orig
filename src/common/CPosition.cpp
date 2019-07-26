@@ -1,4 +1,4 @@
-#include "CPosition.h"
+#include "../../include/whycon/common/CPosition.h"
 #include <math.h>
 
 CPosition::CPosition():CPoint()

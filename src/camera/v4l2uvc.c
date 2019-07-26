@@ -25,8 +25,8 @@
 #include <math.h>
 #include <float.h>
 
-#include "v4l2uvc.h"
-#include "utils.h"
+#include "../../include/whycon/camera/v4l2uvc.h"
+#include "../../include/whycon/camera/utils.h"
 
 #define ARRAY_SIZE(a)		(sizeof(a) / sizeof((a)[0]))
 #define FOURCC_FORMAT		"%c%c%c%c"

@@ -7,7 +7,7 @@
 * History: 
 */
 
-#include "CThread.h"
+#include "../../include/whycon/common/CThread.h"
 extern "C" {
    int StartThread(void* arg) {
       CThread * thread = static_cast<CThread*>(arg);

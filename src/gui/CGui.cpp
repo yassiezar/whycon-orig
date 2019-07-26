@@ -1,4 +1,4 @@
-#include "CGui.h"
+#include "../../include/whycon/gui/CGui.h"
 
 #define THICK_CROSS
 

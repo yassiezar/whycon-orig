@@ -1,4 +1,4 @@
-#include "CPoint.h"
+#include "../../include/whycon/common/CPoint.h"
 
 CPoint::CPoint()
 {

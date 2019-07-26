@@ -4,14 +4,14 @@
  * Author:    Tom Krajnik 
  */
 
-#include "CCamera.h"
+#include "../../include/whycon/camera/CCamera.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 
 extern "C" {
-#include "utils.h"
-#include "color.h"
+#include "../../include/whycon/camera/utils.h"
+#include "../../include/whycon/camera/color.h"
 }
 
 //-----------------------------------------------------------------------------

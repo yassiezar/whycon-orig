@@ -21,8 +21,8 @@
 #                                                                              #
 *******************************************************************************/
 
-#include "utils.h"
-#include "color.h"
+#include "../../include/whycon/camera/utils.h"
+#include "../../include/whycon/camera/color.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -32,7 +32,7 @@
 #include <wait.h>
 #include <time.h>
 #include <limits.h>
-#include "huffman.h"
+#include "../../include/whycon/camera/huffman.h"
 
 #define ISHIFT 11
 

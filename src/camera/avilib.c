@@ -1,8 +1,8 @@
 /*
  *  avilib.c
  *
- *  Copyright (C) Thomas Östreich - June 2001
- *  multiple audio track support Copyright (C) 2002 Thomas Östreich 
+ *  Copyright (C) Thomas ï¿½streich - June 2001
+ *  multiple audio track support Copyright (C) 2002 Thomas ï¿½streich 
  *
  *  Original code:
  *  Copyright (C) 1999 Rainer Johanni <Rainer@Johanni.de> 
@@ -37,7 +37,7 @@ typedef int ssize_t;
 #include <unistd.h>
 #endif
 
-#include "avilib.h"
+#include "../../include/whycon/camera/avilib.h"
 //#include <time.h>
 
 #define INFO_LIST

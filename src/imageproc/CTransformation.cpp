@@ -1,6 +1,6 @@
-#include "CTransformation.h"
+#include "../../include/whycon/imageproc/CTransformation.h"
 #include <stdio.h>
-#include "sysmat.h" 
+#include "../../include/whycon/imageproc/sysmat.h"
 
 /*
  * File name: CTransformation.h

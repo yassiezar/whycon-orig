@@ -4,7 +4,7 @@
 #include <linux/kernel.h>
 #include <linux/videodev2.h>
 
-#include "uvc_compat.h"
+#include "../../../src/camera/uvc_compat.h"
 
 /*
  * Dynamic controls

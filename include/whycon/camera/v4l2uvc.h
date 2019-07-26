@@ -36,7 +36,7 @@
 #include "avilib.h"
 
 #include "uvcvideo.h"
-#include "dynctrl-logitech.h"
+#include "../../../src/camera/dynctrl-logitech.h"
 
 
 #define NB_BUFFER 4 

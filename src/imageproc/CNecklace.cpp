@@ -1,4 +1,4 @@
-#include "CNecklace.h"
+#include "../../include/whycon/imageproc/CNecklace.h"
 
 CNecklace::CNecklace(int bits,int minimalHamming = 1)
 {
