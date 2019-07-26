@@ -10,8 +10,8 @@ include_directories(${PROJECT_SOURCE_DIR}/include/)
 
 # Build subdirs
 add_subdirectory(src/common)
-#add_subdirectory(src/imageproc)
+add_subdirectory(src/imageproc)
 
-add_library(whycon SHARED $<TARGET_OBJECTS:common>)# $<TARGET_OBJECTS:imageproc>)
+add_library(whycon SHARED $<TARGET_OBJECTS:common> $<TARGET_OBJECTS:imageproc>)
 
 target_compile_options(whycon PRIVATE -Werror -Wall -Wextra -ggdb)

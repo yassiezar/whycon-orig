@@ -3,7 +3,11 @@
 
 namespace Whycon
 {
-    CRawImage::CRawImage(int wi,int he) : width(wi), height(he), bpp(3), size(bpp*width*height), numSaved(0), ownData(true)
+    CRawImage::CRawImage(ImageParams params) : CRawImage(params.width, params.height) {}
+
+    CRawImage::CRawImage(ImageParams params, unsigned char* datai) : CRawImage(params.width, params.height, datai) {}
+
+    CRawImage::CRawImage(size_t wi, size_t he) : width(wi), height(he), bpp(3), size(bpp*width*height), numSaved(0), ownData(true)
     {
         data = (unsigned char*)calloc(size,sizeof(unsigned char));
         memset(header,0,122);
@@ -23,7 +27,7 @@ namespace Whycon
         header[10] = 122;
     }
 
-    CRawImage::CRawImage(unsigned char *datai,int wi,int he) : width(wi), height(he), bpp(3), size(bpp*width*height), numSaved(0), ownData(false)
+    CRawImage::CRawImage(size_t wi, size_t he, unsigned char* datai) : width(wi), height(he), bpp(3), size(bpp*width*height), numSaved(0), ownData(false)
     {
         data = datai;
         memset(header,0,122);

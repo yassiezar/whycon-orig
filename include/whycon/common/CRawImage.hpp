@@ -10,12 +10,19 @@
 */
 namespace Whycon
 {
+    typedef struct
+    {
+        size_t width, height, bpp, size;
+    } ImageParams;
+
     class CRawImage
     {
     public:
 
-        CRawImage(int wi, int he);
-        CRawImage(unsigned char *datai, int wi, int he);
+        CRawImage(size_t wi, size_t he);
+        CRawImage(ImageParams params);
+        CRawImage(ImageParams params, unsigned char* datai);
+        CRawImage(size_t wi, size_t he, unsigned char* data);
         ~CRawImage();
 
 /*
