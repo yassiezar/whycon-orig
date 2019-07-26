@@ -1,4 +1,4 @@
-#include "../../include/whycon/common/cmath.h"
+#include <common/cmath.hpp>
 
 double max(double a, double b)
 {

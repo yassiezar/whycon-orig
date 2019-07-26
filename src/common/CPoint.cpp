@@ -1,70 +1,61 @@
-#include "../../include/whycon/common/CPoint.h"
+#include <common/CPoint.hpp>
 
-CPoint::CPoint()
+namespace Whycon
 {
-	x = 0;
-	y = 0;
-}
+	CPoint::CPoint() : x(0), y(0) {	}
 
-CPoint::CPoint(float iX,float iY)
-{
-	x = iX;
-	y = iY;
-}
+	CPoint::CPoint(float iX, float iY) : x(iY), y(iY) { }
 
-void CPoint::set(float iX,float iY)
-{
-	x = iX;
-	y = iY;
-}
+	CPoint::~CPoint() {	}
 
-
-CPoint::~CPoint()
-{
-}
-
-float CPoint::distance(CPoint point)
-{
-	float result = sqrt((point.y-y)*(point.y-y)+(point.x-x)*(point.x-x));
-	return result;
-}
-
-CPoint CPoint::operator + (CPoint point)
-{
-	CPoint result(x+point.x,y+point.y);
-	return result;
-}
-
-CPoint CPoint::operator - (CPoint point)
-{
-	CPoint result(x-point.x,y-point.y);
-	return result;
-}
-
-CPoint CPoint::operator - ()
-{
-	CPoint result(-x,-y);
-	return result;
-}
-
-CPoint CPoint::operator / (float divisor)
-{
-	CPoint result;
-	if (divisor!=0) { 
-		result.x = x/divisor;
-		result.y = y/divisor;
+	void CPoint::set(float iX, float iY)
+	{
+		x = iX;
+		y = iY;
 	}
-	return result;
-}
 
-float CPoint::operator * (CPoint point)
-{
-	return x*point.x + y*point.y;
-}
+	float CPoint::distance(CPoint point)
+	{
+		return sqrtf((point.y - y)*(point.y - y)+(point.x - x)*(point.x - x));
+	}
 
-CPoint CPoint::operator * (float multiplier)
-{
-	CPoint result(x*multiplier,y*multiplier);
-	return result;
+	CPoint CPoint::operator +(CPoint point)
+	{
+		CPoint result(x+point.x,y+point.y);
+		return result;
+	}
+
+	CPoint CPoint::operator -(CPoint point)
+	{
+		CPoint result(x-point.x,y-point.y);
+		return result;
+	}
+
+	CPoint CPoint::operator -()
+	{
+		CPoint result(-x,-y);
+		return result;
+	}
+
+	CPoint CPoint::operator /(float divisor)
+	{
+		CPoint result;
+		if (divisor!=0) {
+			result.x = x/divisor;
+			result.y = y/divisor;
+		}
+		return result;
+	}
+
+	float CPoint::operator *(CPoint point)
+	{
+		return x*point.x + y*point.y;
+	}
+
+	CPoint CPoint::operator *(float multiplier)
+	{
+		CPoint result(x*multiplier,y*multiplier);
+		return result;
+	}
 }
 
