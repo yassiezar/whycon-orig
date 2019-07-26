@@ -15,8 +15,7 @@ namespace Whycon
 
     class CNecklace{
     public:
-        CNecklace(int bits, int minimalHamming);
-        ~CNecklace();
+        CNecklace(size_t bits, int minimalHamming);
         SNecklace get(int sequence);
         int printAll(int a[]);
         int verifyHamming(int a[],int bits,int len);
@@ -24,9 +23,6 @@ namespace Whycon
         int getMinimalHamming(int a,int len);
 
     private:
-        bool debug;
-        size_t length;
-        int idLength;
         std::vector<SNecklace> ids;
         SNecklace unknown;
         int* finalList;
