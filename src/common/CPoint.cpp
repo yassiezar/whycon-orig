@@ -40,9 +40,10 @@ namespace Whycon
 	CPoint CPoint::operator /(float divisor)
 	{
 		CPoint result;
-		if (divisor!=0) {
-			result.x = x/divisor;
-			result.y = y/divisor;
+		if (divisor != 0)
+        {
+			result.x /= divisor;
+			result.y /= divisor;
 		}
 		return result;
 	}
